@@ -5,15 +5,15 @@ end
 
 def partition array, left, right, pivot
   while left < right do
-    while left < right && array[left] < pivot
+    while array[left] < pivot
       left += 1
     end
 
-    while left < right && array[right] > pivot
+    while array[right] > pivot
       right -= 1
     end
 
-    if left < right
+    if left <= right
       temp = array[left]
       array[left] = array[right]
       array[right] = temp
@@ -28,6 +28,6 @@ def sort_part array, left, right
   return if left >= right
   pivot = array[(left + right)/2]
   break_point = partition array, left, right, pivot
-  sort_part array, left, break_point
-  sort_part array, break_point + 1, right
+  sort_part array, left, break_point - 1
+  sort_part array, break_point, right
 end
